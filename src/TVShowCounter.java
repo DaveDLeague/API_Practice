@@ -31,6 +31,7 @@ public class TVShowCounter {
 		JsonObject jObj = jReader.readObject();
 		jReader.close();
 		responseStream.close();
+		System.out.println(jObj);
 		return jObj.getInt("id");
 	}
 	
@@ -45,7 +46,7 @@ public class TVShowCounter {
 		totalSeasons = jArray.size();
 		episodes = new int[totalSeasons];
 		for(int i = 0; i < totalSeasons; i++) {
-			JsonObject jobj = jArray.getValuesAs(JsonObject.class).get(i);
+			JsonObject jobj = jArray.getJsonObject(i);
 			episodes[i] = jobj.getInt("episodeOrder");
 			totalEpisodes += episodes[i];
 		}
